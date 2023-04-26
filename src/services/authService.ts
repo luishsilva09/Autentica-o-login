@@ -3,16 +3,16 @@ import { registerData, userData } from "../types/authTypes";
 import { conflictError } from "../utils/errorUtils";
 import bcrypt from "bcrypt";
 
-async function existUser(email: string) {
-  const userData = await authRepository.findByEmail(email);
-  if (userData) throw conflictError("Conflito, verifique os dados");
-  return userData;
+async function findUser(email: string) {
+  return await authRepository.findByEmail(email);
 }
 
 export async function register(data: userData) {
-  const SALT = 10;
-  const userData: userData | null = await existUser(data.email);
-  const cryptPass = bcrypt.hashSync(data.password, SALT);
+  const userData = await findUser(data.email);
+  if (userData) throw conflictError("Conflito verifique os dados");
+
+  const cryptPass = bcrypt.hashSync(data.password, 10);
   const registerData = { ...data, password: cryptPass };
+
   await authRepository.register(registerData);
 }
