@@ -1,6 +1,7 @@
 import * as authRepository from "../repositories/authRepository";
 import { registerData, userData } from "../types/authTypes";
 import { conflictError } from "../utils/errorUtils";
+import bcrypt from "bcrypt";
 
 async function existUser(email: string) {
   const userData = await authRepository.findByEmail(email);
@@ -9,6 +10,9 @@ async function existUser(email: string) {
 }
 
 export async function register(data: userData) {
-  const userData = await existUser(data.email);
-  await authRepository.register(data);
+  const SALT = 10;
+  const userData: userData | null = await existUser(data.email);
+  const cryptPass = bcrypt.hashSync(data.password, SALT);
+  const registerData = { ...data, password: cryptPass };
+  await authRepository.register(registerData);
 }
