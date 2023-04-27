@@ -7,3 +7,8 @@ export async function register(req: Request, res: Response) {
   await authService.register({ email: data.email, password: data.password });
   res.status(201).send("Criado com sucesso");
 }
+
+export async function login(req: Request, res: Response) {
+  const token = await authService.login(req.body);
+  res.status(200).send({ token });
+}
