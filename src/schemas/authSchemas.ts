@@ -9,3 +9,7 @@ export const userLogin = joi.object({
   email: joi.string().email().trim().required(),
   password: joi.string().trim().required(),
 });
+
+export const forgetPassword = joi.object({
+  email: joi.string().email().trim().required(),
+});

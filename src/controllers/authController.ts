@@ -12,3 +12,10 @@ export async function login(req: Request, res: Response) {
   const token = await authService.login(req.body);
   res.status(200).send({ token });
 }
+//teste de email
+export async function forgetPassword(req: Request, res: Response) {
+  const email = req.body.email;
+  await authService.forgetPassword(email);
+
+  res.status(200).send("Verifique seu email");
+}
