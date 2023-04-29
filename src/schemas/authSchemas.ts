@@ -13,3 +13,8 @@ export const userLogin = joi.object({
 export const forgetPassword = joi.object({
   email: joi.string().email().trim().required(),
 });
+
+export const resetPassword = joi.object({
+  email: joi.string().email().trim().required(),
+  newPassword: joi.string().trim().required(),
+});

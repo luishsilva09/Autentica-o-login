@@ -1,7 +1,12 @@
 import { Router } from "express";
 import * as authController from "../controllers/authController";
 import { schemaValidate } from "../middlewares/schemaValidateMiddleware";
-import { forgetPassword, newUser, userLogin } from "../schemas/authSchemas";
+import {
+  forgetPassword,
+  newUser,
+  userLogin,
+  resetPassword,
+} from "../schemas/authSchemas";
 
 const authRoutes = Router();
 
@@ -12,6 +17,10 @@ authRoutes.post(
   schemaValidate(forgetPassword),
   authController.forgetPassword
 );
-authRoutes.post("/resetPassword");
+authRoutes.post(
+  "/resetPassword/:resetToken",
+  schemaValidate(resetPassword),
+  authController.resetPassword
+);
 
 export default authRoutes;

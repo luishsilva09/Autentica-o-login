@@ -22,3 +22,12 @@ export async function resetToken(
     },
   });
 }
+
+export async function resetPassword(email: string, newPassword: string) {
+  return await db.user.update({
+    where: { email },
+    data: {
+      password: newPassword,
+    },
+  });
+}
