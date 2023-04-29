@@ -8,3 +8,17 @@ export async function register(data: userData) {
 export async function findByEmail(email: string) {
   return await db.user.findUnique({ where: { email } });
 }
+
+export async function resetToken(
+  email: string,
+  ResetToken: string,
+  expireDateToken: string
+) {
+  return await db.user.update({
+    where: { email },
+    data: {
+      resetPassToken: ResetToken,
+      expireDateToken,
+    },
+  });
+}
