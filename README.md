@@ -16,20 +16,79 @@
 
 # Features
 
-# API referenci
+- Register user
+- Login
+- Forget password
 
-### Criar cliente:
+# API reference
+
+### Register user:
 
 ```http
-    POST /
+    POST /register
 ```
 
 Request:
 
-| Body | Type | Description |
-| ---- | ---- | ----------- |
+| Body             | Type     | Description                     |
+| ---------------- | -------- | ------------------------------- |
+| `email`          | `String` | **Required** user email         |
+| `password`       | `String` | **Required** user password      |
+| `repeatPassword` | `String` | **Required** reference password |
 
 </br>
+
+### Login:
+
+```http
+    POST /login
+```
+
+| Body       | Type     | Description                |
+| ---------- | -------- | -------------------------- |
+| `email`    | `String` | **Required** user email    |
+| `password` | `String` | **Required** user password |
+
+Response:
+
+```json
+{
+    token: //JWT token
+}
+```
+
+### Forget password:
+
+```http
+    POST /forgetPassword
+```
+
+| Body    | Type     | Description             |
+| ------- | -------- | ----------------------- |
+| `email` | `String` | **Required** user email |
+
+Response:
+
+```json
+Email to user
+```
+
+### Reset password
+
+```http
+    POST /resetPassword/:{resetToken}
+```
+
+| Body       | Type     | Description                |
+| ---------- | -------- | -------------------------- |
+| `email`    | `String` | **Required** user email    |
+| `password` | `String` | **Required** user password |
+
+| Params       | Type     | Description              |
+| ------------ | -------- | ------------------------ |
+| `resetToken` | `String` | **Required** reset token |
+
+`ResetToken = will be sent to user email`
 
 # Tests:
 
