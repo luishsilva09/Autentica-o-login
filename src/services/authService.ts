@@ -55,18 +55,17 @@ export async function forgetPassword(email: string) {
 
   //send mail
   const transport = nodemailer.createTransport({
-    host: "sandbox.smtp.mailtrap.io",
-    port: 2525,
+    host: "smtp.gmail.com",
     auth: {
-      user: "86aea034c3c2f4",
-      pass: "8df22a4d404dc4",
+      user: "luishsilva09@gmail.com",
+      pass: "lkrtyeygspnrmakm",
     },
   });
   const info = await transport.sendMail({
     from: '"Autentica" ',
-    to: "luishsilva09@gmail.com",
+    to: `${userData.email}`,
     subject: "Redefinir senha",
-    text: `${resetToken}`,
+    text: `Para redefinir senha utilize esse token: ${resetToken}`,
   });
 }
 
