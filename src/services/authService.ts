@@ -57,8 +57,8 @@ export async function forgetPassword(email: string) {
   const transport = nodemailer.createTransport({
     host: "smtp.gmail.com",
     auth: {
-      user: "luishsilva09@gmail.com",
-      pass: "lkrtyeygspnrmakm",
+      user: "",
+      pass: "",
     },
   });
   const info = await transport.sendMail({
