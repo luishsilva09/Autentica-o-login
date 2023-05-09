@@ -31,6 +31,14 @@ describe("Integration test for auth service", () => {
 
     expect(login.status).toBe(200);
   });
-  test.todo("forget password");
-  test.todo("Reset password");
+  test("forget password", async () => {
+    const data = await authFactory.registerData();
+    const register = await supertest(app).post("/register").send(data);
+
+    const request = await supertest(app)
+      .post("/forgetPassword")
+      .send({ email: data.email });
+
+    expect(request.status).toBe(200);
+  });
 });
