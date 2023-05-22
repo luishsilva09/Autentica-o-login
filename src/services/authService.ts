@@ -65,7 +65,7 @@ export async function forgetPassword(email: string) {
     from: '"Autentica" ',
     to: `${userData.email}`,
     subject: "Redefinir senha",
-    text: `Para redefinir senha utilize esse token: ${resetToken}`,
+    text: `Para redefinir senha utilize esse token: ${process.env.URL_FRONT}/${resetToken}`,
   });
 }
 
