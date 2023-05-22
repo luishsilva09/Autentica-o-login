@@ -17,4 +17,9 @@ export const forgetPassword = joi.object({
 export const resetPassword = joi.object({
   email: joi.string().email().trim().required(),
   newPassword: joi.string().trim().required(),
+  repeatNewPassword: joi
+    .string()
+    .trim()
+    .valid(joi.ref("newPassword"))
+    .required(),
 });
