@@ -79,16 +79,17 @@ Email to user
     POST /resetPassword/:{resetToken}
 ```
 
-| Body       | Type     | Description                |
-| ---------- | -------- | -------------------------- |
-| `email`    | `String` | **Required** user email    |
-| `password` | `String` | **Required** user password |
+| Body             | Type     | Description                |
+| ---------------- | -------- | -------------------------- |
+| `email`          | `String` | **Required** user email    |
+| `password`       | `String` | **Required** user password |
+| `repeatPassword` | `String` | **Required** user password |
 
 | Params       | Type     | Description              |
 | ------------ | -------- | ------------------------ |
 | `resetToken` | `String` | **Required** reset token |
 
-`ResetToken = will be sent to user email`
+`ResetToken = will be sent to user email with the link you can acess`
 
 # Tests:
 
