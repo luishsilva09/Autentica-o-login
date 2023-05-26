@@ -16,6 +16,8 @@ model User {
   password String
   resetPassToken String?
   expireDateToken String?
+  secret String?
+  twoFactorAuth Boolean @default(false)
 
   @@map("users")
 }
