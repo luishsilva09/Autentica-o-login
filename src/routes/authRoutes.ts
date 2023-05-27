@@ -7,6 +7,7 @@ import {
   userLogin,
   resetPassword,
 } from "../schemas/authSchemas";
+import validToken from "../middlewares/validToken";
 
 const authRoutes = Router();
 

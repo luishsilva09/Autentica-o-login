@@ -31,3 +31,10 @@ export async function resetPassword(email: string, newPassword: string) {
     },
   });
 }
+
+export async function createTwoFactorAuth(email: string, secret: string) {
+  return await db.user.update({
+    where: { email },
+    data: { secret },
+  });
+}

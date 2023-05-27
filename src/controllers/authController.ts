@@ -26,3 +26,9 @@ export async function resetPassword(req: Request, res: Response) {
   await authService.resetPassword(email, passwordToken, newPassword);
   res.status(200).send("Senha atualizada");
 }
+
+export async function twoFactorAuth(req: Request, res: Response) {
+  const { email } = res.locals.decodeToken;
+  const secret = await authService.enableTwoFactorAuth(email);
+  res.status(200).send(secret);
+}

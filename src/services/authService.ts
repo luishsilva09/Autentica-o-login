@@ -6,6 +6,7 @@ import JWT from "jsonwebtoken";
 import dotenv from "dotenv";
 import { v4 as uuid } from "uuid";
 import nodemailer from "nodemailer";
+import speakeasy from "speakeasy";
 
 dotenv.config();
 
@@ -87,4 +88,17 @@ export async function resetPassword(
   const cryptPass = await encryptPassword(newPassword);
 
   await authRepository.resetPassword(email, cryptPass);
+}
+
+export async function enableTwoFactorAuth(email: string) {
+  const userData = await findUser(email);
+
+  if (!userData || userData.twoFactorAuth)
+    throw conflictError("Conflito verifique os dados");
+
+  const secret = speakeasy.generateSecret();
+
+  await authRepository.createTwoFactorAuth(email, secret.base32);
+
+  return secret;
 }
