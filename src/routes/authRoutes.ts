@@ -24,4 +24,7 @@ authRoutes.post(
   authController.resetPassword
 );
 
+authRoutes.post("/twoFactorAuth", validToken, authController.twoFactorAuth);
+authRoutes.post("/twoFactorAuth/verify", validToken, authController.validToken);
+
 export default authRoutes;
