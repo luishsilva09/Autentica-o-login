@@ -38,3 +38,10 @@ export async function createTwoFactorAuth(email: string, secret: string) {
     data: { secret },
   });
 }
+
+export async function enableTwoFactorAuth(email: string) {
+  return await db.user.update({
+    where: { email },
+    data: { twoFactorAuth: true },
+  });
+}

@@ -102,3 +102,24 @@ export async function enableTwoFactorAuth(email: string) {
 
   return secret;
 }
+
+export async function validToken(token: string, email: string) {
+  const userData = await findUser(email);
+
+  if (!userData || userData.secret === null)
+    throw conflictError("Conflito verifique os dados");
+
+  const validate = speakeasy.totp.verify({
+    secret: userData.secret,
+    encoding: "base32",
+    token,
+  });
+
+  if (validate && userData.twoFactorAuth === false)
+    await authRepository.enableTwoFactorAuth(email);
+
+  if (validate) {
+    return { code: 200, message: "ativado com sucesso" };
+  }
+  return { code: 401, message: "Conflito" };
+}

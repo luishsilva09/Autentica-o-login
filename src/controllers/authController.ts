@@ -32,3 +32,9 @@ export async function twoFactorAuth(req: Request, res: Response) {
   const secret = await authService.enableTwoFactorAuth(email);
   res.status(200).send(secret);
 }
+export async function validToken(req: Request, res: Response) {
+  const { token } = req.body;
+  const { email } = res.locals.decodeToken;
+  const { code, message } = await authService.validToken(token, email);
+  res.status(code).send(message);
+}
