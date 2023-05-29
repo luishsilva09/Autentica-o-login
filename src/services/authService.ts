@@ -93,8 +93,8 @@ export async function resetPassword(
 export async function enableTwoFactorAuth(email: string) {
   const userData = await findUser(email);
 
-  if (!userData || userData.twoFactorAuth)
-    throw conflictError("Conflito verifique os dados");
+  if (!userData) throw conflictError("Conflito verifique os dados");
+  if (userData.twoFactorAuth) throw unauthorizedError();
 
   const secret = speakeasy.generateSecret();
 
