@@ -38,7 +38,10 @@ export async function login(data: userData) {
   );
   if (!comparePassword) throw conflictError();
 
-  return JWT.sign({ email: userData.email }, process.env.SECRET_JWT || "");
+  return JWT.sign(
+    { email: userData.email, twoFactorAuth: userData.twoFactorAuth },
+    process.env.SECRET_JWT || ""
+  );
 }
 
 export async function forgetPassword(email: string) {
