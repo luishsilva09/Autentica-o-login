@@ -19,6 +19,7 @@
 - Register user
 - Login
 - Forget password
+- Two factor authentication
 
 # API reference
 
@@ -90,6 +91,29 @@ Email to user
 | `resetToken` | `String` | **Required** reset token |
 
 `ResetToken = will be sent to user email with the link you can acess`
+
+### Two factor authentication enable
+
+```http
+    POST /twoFactorAuth
+```
+
+| Headers          | Type     | Description               |
+| ---------------- | -------- | ------------------------- |
+| `Authentication` | `Bearer` | **Required** bearer token |
+
+Response:
+
+Return a object from Liberie Speakeasy.
+
+```json
+{
+    ascii:""
+    base32:""
+    hex:""
+    otpauth_url:""
+}
+```
 
 # Tests:
 
