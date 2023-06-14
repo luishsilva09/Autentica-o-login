@@ -115,6 +115,20 @@ Return a object from Liberie Speakeasy.
 }
 ```
 
+### Two factor authentication verify
+
+```http
+    POST /twoFactorAuth/verify
+```
+
+| Headers          | Type     | Description               |
+| ---------------- | -------- | ------------------------- |
+| `Authentication` | `Bearer` | **Required** bearer token |
+
+| Body    | Type     | Description            |
+| ------- | -------- | ---------------------- |
+| `token` | `String` | **Required** Pin/token |
+
 # Tests:
 
 Use .env.test to dont have any problem on database.
