@@ -14,6 +14,8 @@
 
 # Description
 
+Demonstration of password recovery and two-factor authentication.
+
 # Features
 
 - Register user
